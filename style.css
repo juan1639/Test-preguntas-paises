@@ -1,0 +1,167 @@
+
+:root {
+    --blanco: rgb(240, 240, 240);
+    --blanco-azulado:rgb(200, 245, 255);
+    --botonInicioBlancoNormal: #cccccc;
+    --botonInicioBlancoIntenso: #ffffee;
+    --grisVacio: rgb(59, 59, 59);
+    --casiNegro: #111111;
+    --gradi-gris1: #5f5f5f;
+    --gradi-gris2: #494949;
+    --gradi-rojo1: rgb(148, 4, 4);
+    --gradi-rojo2: rgb(255, 23, 5);
+    --gradi-verde1: rgb(25, 240, 9);
+    --gradi-verde2: rgb(25, 180, 9);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: url('assets/img/mapa-mundi-3d-model.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+}
+
+#main {
+    /* border: 1px solid green; */
+    width: inherit;
+    height: inherit;
+    display: flex;
+    font-size: 32px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100vw;
+    height: fit-content;
+    max-width: 800px;
+    font-size: 48px;
+    color: cyan;
+    text-shadow: 2px 2px 4px var(--blanco);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 2rem;
+    margin: 0 2rem 1rem 2rem;
+}
+
+.pregunta {
+    width: 100vw;
+    height: fit-content;
+    max-width: 800px;
+    border: 3px solid var(--blanco);
+    border-radius: 6px;
+    font-size: 32px;
+    color: yellowgreen;
+    background-color: var(--casiNegro);
+    opacity: 0.9;
+    display: flex;
+    justify-content: left;
+    padding: 1.2rem 2.4rem;
+    margin: 1.5rem 2rem 2.5rem 2rem;
+}
+
+.respuesta-container {
+    width: 100vw;
+    height: fit-content;
+    max-width: 800px;
+    border: 1px solid pink;
+    padding: 0;
+}
+
+.respuesta {
+    border: 3px solid var(--blanco);
+    border-radius: 6px;
+    font-size: 24px;
+    color: beige;
+    background-color: var(--casiNegro);
+    opacity: 0.9;
+    display: flex;
+    justify-content: left;
+    padding: 1rem 2.4rem;
+    margin: 0 2rem 1.5rem 2rem;
+}
+
+.info {
+    width: 100vw;
+    height: fit-content;
+    max-width: 800px;
+    font-size: 24px;
+    color: cyan;
+    text-shadow: 2px 2px 4px var(--blanco);
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 2rem;
+    margin: 0.4rem 4rem;
+}
+
+.botones-inicio {
+    border: none;
+    border-radius: 6px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 300px;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--gradi-gris1);
+    background: var(--gradi-rojo1);
+    padding: 2rem 4rem;
+    display: inline-block;
+    margin-top: 250px;
+    margin-left: auto;
+    position: absolute;
+    opacity: 0.9;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.botones-inicio:hover {
+    color: var(--botonInicioBlancoIntenso);
+    background-color: var(--gradi-rojo2);
+}
+
+.oculto {
+    display: none;
+}
+
+.no-oculto {
+    display: inline-block;
+}
+
+@keyframes animaTxt {
+    0% {
+        transform: scaleY(1.1);
+    }
+    50% {
+        transform: scaleY(0.6);
+    }
+    100% {
+        transform: scaleY(1.1);
+    }
+}
+
+/* ----------------------------------------------------
+RESPONSIVE
+---------------------------------------------------- */
+@media (max-width: 768px) {
+    .botones-inicio {
+        max-width: 250px;
+        font-size: 24px;
+        padding: 1rem 2rem;
+    }
+}
