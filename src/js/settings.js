@@ -14,6 +14,30 @@ export class Settings
             FPS: 50
         };
 
+        this.tipoPregunta =
+        {
+            capital:
+            {
+                pais: ['string', 'translations', 'spa', 'common'],
+                capital: ['array', 'capital'],
+                texto: 'Cual es la capital de '
+            },
+            continente:
+            {
+                pais: ['string', 'translations', 'spa', 'common'],
+                continente: ['array', 'continents'],
+                texto: 'En que continente se encuentra '
+            },
+            habitantes:
+            {
+                pais: ['string', 'translations', 'spa', 'common'],
+                habitantes: ['integer', 'population'],
+                texto: 'Cuantos habitantes (aprox.) tiene '
+            }
+        };
+
+        this.todosLosPaises = [];
+
         this.estado =
         {
             preFetch: true,

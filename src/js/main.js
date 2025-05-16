@@ -7,8 +7,6 @@ import { touchStart, click } from './eventos.js';
 
 const context = { settings: undefined };
 
-let todosLosPaises = [];
-
 window.onload = () =>
 {
     context.settings = new Settings();
@@ -16,8 +14,8 @@ window.onload = () =>
 
     loadData().then((paises) =>
     {
-        todosLosPaises = paises;
-        console.log(todosLosPaises.length);
+        context.settings.todosLosPaises = paises;
+        console.log(context.settings.todosLosPaises.length);
 
         context.settings.estado.preFetch = false;
         context.settings.estado.preJuego = true;
