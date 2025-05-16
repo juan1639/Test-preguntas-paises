@@ -5,6 +5,7 @@ export class Settings
     {
         this.constantes =
         {
+            NUMERO_OPCIONES_RESPUESTAS: 4,
             NUMERO_PARTICULAS_CONFETI: 1200,
             ESCALAR_PARTICULAS: 1,
             VP_WIDTH: window.innerWidth,
@@ -18,20 +19,20 @@ export class Settings
         {
             capital:
             {
-                pais: ['string', 'translations', 'spa', 'common'],
-                capital: ['array', 'capital'],
+                pais: ['translations', 'spa', 'common'],
+                campoRespuesta: 'capital',
                 texto: 'Cual es la capital de '
             },
             continente:
             {
-                pais: ['string', 'translations', 'spa', 'common'],
-                continente: ['array', 'continents'],
+                pais: ['translations', 'spa', 'common'],
+                campoRespuesta: 'continents',
                 texto: 'En que continente se encuentra '
             },
             habitantes:
             {
-                pais: ['string', 'translations', 'spa', 'common'],
-                habitantes: ['integer', 'population'],
+                pais: ['translations', 'spa', 'common'],
+                campoRespuesta: 'population',
                 texto: 'Cuantos habitantes (aprox.) tiene '
             }
         };

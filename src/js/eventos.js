@@ -1,5 +1,5 @@
 import { context } from "./main.js";
-import { comenzar_partida } from "./en_juego.js";
+import { comenzar_partida, siguiente_pregunta } from "./en_juego.js";
 
 // ======================================================================
 //  EVENTOS touchstart
@@ -93,6 +93,7 @@ const click = document.addEventListener('click', (event) =>
         {
             settings.sonidos.musicafondo.pause();
         }
+        siguiente_pregunta();
     }
     
     if (settings.estado.preJuego)
