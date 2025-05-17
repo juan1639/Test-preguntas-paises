@@ -28,6 +28,7 @@ html, body {
 }
 
 body {
+    background-color: var(--gradi-gris1);
     background: url('assets/img/mapa-mundi-3d-model.jpg');
     background-position: center;
     background-repeat: no-repeat;

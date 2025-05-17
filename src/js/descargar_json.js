@@ -8,6 +8,18 @@ let todosLosPaises = [];
 const botonDownload = document.getElementById("boton-download");
 botonDownload.addEventListener("click", () => descargarJSON(todosLosPaises));
 
+fetch(URL_API_RESTCOUNTRIES_ALL)
+    .then(res => res.json())
+    .then(data => {
+        todosLosPaises = data;
+        //mostrarPaises();
+    })
+    .catch(err => {
+        contenedor.innerHTML = 'Error al cargar países.';
+        console.error(err);
+    });
+
+
 const descargarJSON = datos =>
 {
     const jsonStr = JSON.stringify(datos, null, 2)
@@ -21,15 +33,3 @@ const descargarJSON = datos =>
 
     URL.revokeObjectURL(url)
 }
-
-fetch(URL_API_RESTCOUNTRIES_ALL)
-    .then(res => res.json())
-    .then(data => {
-        todosLosPaises = data;
-        //mostrarPaises();
-    })
-    .catch(err => {
-        contenedor.innerHTML = 'Error al cargar países.';
-        console.error(err);
-    });
-

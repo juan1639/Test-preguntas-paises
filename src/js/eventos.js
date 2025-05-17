@@ -2,19 +2,69 @@ import { context } from "./main.js";
 import { comenzar_partida, siguiente_pregunta } from "./en_juego.js";
 
 // ======================================================================
+//  EVENTOS Click
+// 
+// ----------------------------------------------------------------------
+export const click = document.addEventListener('click', (event) =>
+{
+    console.log(event.target.id);
+    //console.log(event);
+    const clickar = event.target.id;
+    const evento = event;
+
+    // Si los settings todavia son null... return
+    if (typeof context.settings === 'undefined') return;
+
+    // ---------- Opciones click ------------
+    const settings = context.settings;
+
+    if (clickar === 'main')
+    {
+        if (settings.sonidos.musicafondo.paused)
+        {
+            settings.sonidos.musicafondo.play();
+        }
+        else
+        {
+            settings.sonidos.musicafondo.pause();
+        }
+        siguiente_pregunta();
+    }
+    
+    if (settings.estado.preJuego)
+    {
+        if (clickar === 'boton-comenzar')
+        {
+            console.log('comenzar partida!');
+            comenzar_partida();
+        }
+    }
+    else if (settings.estado.enJuego)
+    {
+        if (clickar === 'respuesta-container')
+        {
+            console.log("*** realizando jugada ***");
+            //realizarJugada(evento);
+        }
+    }
+});
+
+// ======================================================================
 //  EVENTOS touchstart
 // 
 // ----------------------------------------------------------------------
-const touchStart = document.addEventListener('touchstart', (event) =>
+export const touchStart = document.addEventListener('touchstart', (event) =>
 {
     //console.log(event.target.id, event.targetTouches);
     const touch = event.target.id;
     const evento = event;
 
+    // Si los settings todavia son null... return
     if (typeof context.settings === 'undefined') return;
 
+    // ---------- Opciones touch ------------
     const settings = context.settings;
-    
+
     if (settings.estado.preJuego)
     {
         if (touch === 'boton-comenzar')
@@ -51,7 +101,7 @@ const touchStart = document.addEventListener('touchstart', (event) =>
 //  EVENTOS touchend
 // 
 // ----------------------------------------------------------------------
-/* const touchEnd = document.addEventListener('touchend', (event) => {
+/* export const touchEnd = document.addEventListener('touchend', (event) => {
 
     console.log(event.target.id, event.targetTouches);
     const keysTeclas = Object.keys(settings.tecla);
@@ -67,54 +117,3 @@ const touchStart = document.addEventListener('touchstart', (event) =>
         }
     }
 }); */
-
-// ----------------------------------------------------------------------
-//  EVENTOS Click
-// 
-// ----------------------------------------------------------------------
-const click = document.addEventListener('click', (event) =>
-{
-    console.log(event.target.id);
-    //console.log(event);
-    const clickar = event.target.id;
-    const evento = event;
-
-    if (typeof context.settings === 'undefined') return;
-
-    const settings = context.settings;
-
-    if (clickar === 'main')
-    {
-        if (settings.sonidos.musicafondo.paused)
-        {
-            settings.sonidos.musicafondo.play();
-        }
-        else
-        {
-            settings.sonidos.musicafondo.pause();
-        }
-        siguiente_pregunta();
-    }
-    
-    if (settings.estado.preJuego)
-    {
-        if (clickar === 'boton-comenzar')
-        {
-            console.log('comenzar partida!');
-            comenzar_partida();
-        }
-    }
-    else if (settings.estado.enJuego)
-    {
-        if (clickar === 'respuesta-container')
-        {
-            console.log("*** realizando jugada ***");
-            //realizarJugada(evento);
-        }
-    }
-});
-
-export {
-    touchStart,
-    click
-};

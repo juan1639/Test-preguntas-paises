@@ -52,11 +52,14 @@ function crear_pregunta()
     const respuestaCorrectaKey = tipoPreguntaRnd.campoRespuesta;
     const respuestaCorrecta = todosLosPaises[paisRnd][respuestaCorrectaKey];
 
+    // Generamos las respuestas incorrectas:
+    const arrayIncorrectas = generar_opciones_incorrectas(respuestaCorrectaKey, paisRnd);
+
     // Creamos las opciones-respuestas:
-    crear_opciones_respuestas(respuestaCorrecta);
+    crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas);
 }
 
-function crear_opciones_respuestas(respuestaCorrecta)
+function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 {
     const { constantes, doms } = context.settings;
 
@@ -79,7 +82,8 @@ function crear_opciones_respuestas(respuestaCorrecta)
         else
         {
             nuevaOpcionRespuesta.setAttribute('id', `respuesta-${i}`);
-            nuevaOpcionRespuesta.textContent = "Karranza";
+            let respuestaIncorrectaChecked = check_respuesta_correcta_es_array(arrayIncorrectas[i]);
+            nuevaOpcionRespuesta.textContent = respuestaIncorrectaChecked;
         }
 
         doms.opciones.appendChild(nuevaOpcionRespuesta);
@@ -104,6 +108,31 @@ function check_respuesta_correcta_es_array(respuestaCorrecta)
     }
     
     return respuestaCorrecta;
+}
+
+function generar_opciones_incorrectas(respuestaCorrectaKey, paisRnd)
+{
+    const { todosLosPaises, constantes } = context.settings;
+
+    const arrayIndices = [];
+    arrayIndices.push(paisRnd);// 1er elemento la correcta
+
+    const arrayIncorrectas = [];
+
+    let rnd;
+
+    for (let i = 0; i < constantes.NUMERO_OPCIONES_RESPUESTAS; i ++)
+    {
+        do {
+            rnd = Math.floor(Math.random() * todosLosPaises.length);
+        }
+        while (arrayIndices.includes(rnd));
+
+        arrayIndices.push(rnd);
+        arrayIncorrectas.push(todosLosPaises[rnd][respuestaCorrectaKey]);
+    }
+    
+    return arrayIncorrectas;
 }
 
 export { comenzar_partida, siguiente_pregunta };
