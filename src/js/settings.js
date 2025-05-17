@@ -50,6 +50,7 @@ export class Settings
         this.resultado =
         {
             totalPreguntas: 10,
+            contadorPreguntas: 0,
             acertadas: 0,
             porcentaje: 0
         };
@@ -67,6 +68,8 @@ export class Settings
             gameover: new Audio('assets/audio/gameover.mp3'),
             boooh: new Audio('assets/audio/boooh.mp3'),
             winner: new Audio('assets/audio/aplausoseagle.mp3'),
+            correct: new Audio('assets/audio/p-ping.mp3'),
+            wrong: new Audio('assets/audio/umph.mp3'),
             musicafondo: new Audio('assets/audio/music-puzzle-game1.mp3')
         };
 
@@ -102,7 +105,8 @@ export class Settings
             pregunta: document.getElementById('pregunta'),
             respuestaContainer: document.getElementById('respuesta-container'),
             opciones: document.getElementById('opciones'),
-            info: document.getElementById('info'),
+            infoContainer: document.getElementById('info-container'),
+            info: document.getElementsByClassName('info'),
             botonesInicio: document.getElementsByClassName('botones-inicio'),
             botonMusic: document.getElementById('boton-toggle-music')
         };

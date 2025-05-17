@@ -9,10 +9,14 @@ function comenzar_partida()
     estado.preJuego = false;
     estado.enJuego = true;
 
-    doms.botonesInicio[0].style.display = "none";
-    doms.botonMusic.style.display = "inline-block";
-    
     resultado.acertadas = 0;
+    resultado.contadorPreguntas ++;
+
+    doms.botonesInicio[0].classList.add("oculto");
+    doms.botonMusic.classList.add("no-oculto");
+    doms.infoContainer.classList.add("no-oculto-flex");
+
+    renderizar_info();
 
     sonidos.musicafondo.play();
 
@@ -80,7 +84,7 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 
         if (ubicarCorrectaRnd === i)
         {
-            nuevaOpcionRespuesta.setAttribute('id', `respuesta-${i}`);
+            nuevaOpcionRespuesta.setAttribute('id', 'respuesta-9');
             nuevaOpcionRespuesta.textContent = respuestaCorrectaChecked;
         }
         else
@@ -94,12 +98,35 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
     }
 }
 
-function siguiente_pregunta()
+function siguiente_pregunta(acertadaBool)
 {
-    const { doms } = context.settings;
+    const { resultado, doms, sonidos } = context.settings;
+
+    if (acertadaBool)
+    {
+        resultado.acertadas ++;
+        sonidos.correct.play();
+    }
+    else
+    {
+        sonidos.wrong.play();
+    }
+
+    console.log(`Acertadas: ${resultado.acertadas}/${resultado.totalPreguntas}`);
+    
+    resultado.contadorPreguntas ++;
     doms.opciones.innerHTML = '';
 
+    renderizar_info();
     crear_pregunta();
+}
+
+function renderizar_info()
+{
+    const { doms, resultado } = context.settings;
+
+    doms.info[0].textContent = `Pregunta: ${resultado.contadorPreguntas}/${resultado.totalPreguntas}`;
+    doms.info[1].textContent = `Acertadas: ${resultado.acertadas}`;
 }
 
 function check_respuesta_correcta_es_array(respuestaCorrecta)

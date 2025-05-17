@@ -18,7 +18,7 @@ export const click = document.addEventListener('click', (event) =>
     // ---------- Opciones click ------------
     const settings = context.settings;
 
-    if (clickar === 'main')
+    if (clickar === 'boton-toggle-music')
     {
         if (settings.sonidos.musicafondo.paused)
         {
@@ -28,7 +28,6 @@ export const click = document.addEventListener('click', (event) =>
         {
             settings.sonidos.musicafondo.pause();
         }
-        siguiente_pregunta();
     }
     
     if (settings.estado.preJuego)
@@ -41,10 +40,10 @@ export const click = document.addEventListener('click', (event) =>
     }
     else if (settings.estado.enJuego)
     {
-        if (clickar === 'respuesta-container')
+        if (clickar === 'respuesta-9')
         {
-            console.log("*** realizando jugada ***");
-            //realizarJugada(evento);
+            console.log("*** respuesta correcta ***");
+            siguiente_pregunta(true);
         }
     }
 });
@@ -65,24 +64,7 @@ export const touchStart = document.addEventListener('touchstart', (event) =>
     // ---------- Opciones touch ------------
     const settings = context.settings;
 
-    if (settings.estado.preJuego)
-    {
-        if (touch === 'boton-comenzar')
-        {
-            console.log('comenzar partida!');
-            comenzar_partida();
-        }
-    }
-    else if (settings.estado.enJuego)
-    {
-        if (touch === 'respuesta-container')
-        {
-            console.log("*** realizando jugada ***");
-            //realizarJugada(evento);
-        }
-    }
-
-    if (touch === 'main')
+    if (touch === 'boton-toggle-music')
     {
         console.log(touch, 'touch');
 
@@ -95,6 +77,23 @@ export const touchStart = document.addEventListener('touchstart', (event) =>
             settings.sonidos.musicafondo.pause();
         }
         siguiente_pregunta();
+    }
+
+    if (settings.estado.preJuego)
+    {
+        if (touch === 'boton-comenzar')
+        {
+            console.log('comenzar partida!');
+            comenzar_partida();
+        }
+    }
+    else if (settings.estado.enJuego)
+    {
+        if (touch === 'respuesta-9')
+        {
+            console.log("*** respuesta correcta! ***");
+            siguiente_pregunta(true);
+        }
     }
 });
 
