@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------
 import { Settings } from './settings.js';
 import { loadData } from './load_data.js';
-import { touchStart, click } from './eventos.js';
+import { click } from './eventos.js';
 
 const context = { settings: undefined };
 

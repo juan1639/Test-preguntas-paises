@@ -57,7 +57,7 @@ export const click = document.addEventListener('click', (event) =>
 //  EVENTOS touchstart
 // 
 // ----------------------------------------------------------------------
-export const touchStart = document.addEventListener('touchstart', (event) =>
+const touchStart = document.addEventListener('touchstart', (event) =>
 {
     //console.log(event.target.id, event.targetTouches);
     const touch = event.target.id;
