@@ -174,4 +174,29 @@ RESPONSIVE
         font-size: 24px;
         padding: 1rem 2rem;
     }
+
+    .header {
+        font-size: 32px;
+        padding: 0.4rem 1rem;
+        margin: 0 1rem 0.8rem 1rem;
+    }
+
+    .pregunta {
+        width: 98vw;
+        font-size: 24px;
+        padding: 1.2rem 2.4rem;
+        margin: 1rem 0.4 rem 1.5rem 0.4rem;
+    }
+
+    .respuesta {
+        font-size: 18px;
+        padding: 0.6rem 1.4rem;
+        margin: 0 1rem 1.2rem 1rem;
+    }
+
+    .info {
+        font-size: 14px;
+        padding: 0.4rem 1rem;
+        margin: 0.4rem 2rem;
+    }
 }
