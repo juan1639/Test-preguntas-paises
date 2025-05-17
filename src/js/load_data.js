@@ -9,7 +9,7 @@ export const loadData = async () =>
 
     try
     {
-        const res = await fetch(URL_API_RESTCOUNTRIES_ALL + "noVale", {
+        const res = await fetch(URL_API_RESTCOUNTRIES_ALL, {
             signal: controller.signal,
         });
 
@@ -32,9 +32,9 @@ export const loadData = async () =>
     catch (err)
     {
         const BASE_PATH = window.location.pathname.split('/')[1]; // obtener el path-base en produccion
-        
-        const resBackup = await fetch(`/${BASE_PATH}/json/paises_backup.json`);
-        //const resBackup = await fetch('../../json/paises_backup.json'); // path-base local
+
+        // const resBackup = await fetch(`/${BASE_PATH}/json/paises_backup.json`);
+        const resBackup = await fetch('../../json/paises_backup.json'); // path-base local
 
         todosLosPaises = await resBackup.json();
 

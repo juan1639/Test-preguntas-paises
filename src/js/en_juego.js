@@ -4,7 +4,7 @@ function comenzar_partida()
 {
     console.log("*** comienza test ***");
 
-    const { estado, doms, resultado } = context.settings;
+    const { estado, doms, resultado, sonidos } = context.settings;
 
     estado.preJuego = false;
     estado.enJuego = true;
@@ -12,6 +12,7 @@ function comenzar_partida()
     doms.botonesInicio[0].style.display = "none";
     resultado.acertadas = 0;
 
+    sonidos.musicafondo.play();
     crear_pregunta();
 }
 

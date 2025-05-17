@@ -94,6 +94,7 @@ export const touchStart = document.addEventListener('touchstart', (event) =>
         {
             settings.sonidos.musicafondo.pause();
         }
+        siguiente_pregunta();
     }
 });
 
