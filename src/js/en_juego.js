@@ -124,7 +124,6 @@ function siguiente_pregunta(acertadaBool, elegida)
 
         renderizar_info();
         crear_pregunta();
-
     }, 3000);
 }
 
@@ -152,9 +151,16 @@ function generar_opciones_incorrectas(respuestaCorrectaKey, paisRnd)
 {
     const { todosLosPaises, constantes } = context.settings;
 
+    
+    if (respuestaCorrectaKey === 'continents')
+    {
+        const arrayIncorrectas = generar_opciones_continentes(paisRnd);
+        return arrayIncorrectas;
+    }
+    
     const arrayIndices = [];
     arrayIndices.push(paisRnd);// 1er elemento la correcta
-
+    
     const arrayIncorrectas = [];
 
     let rnd;
@@ -170,6 +176,32 @@ function generar_opciones_incorrectas(respuestaCorrectaKey, paisRnd)
         arrayIncorrectas.push(todosLosPaises[rnd][respuestaCorrectaKey]);
     }
     
+    return arrayIncorrectas;
+}
+
+function generar_opciones_continentes(paisRnd)
+{
+    const { todosLosPaises, constantes } = context.settings;
+
+    const arrayContinentes = ['Europe', 'Asia', 'Africa', 'Antarctica', 'North America', 'South America', 'Oceania'];
+
+    const correctas = todosLosPaises[paisRnd]['continents'];
+    const correcta = check_respuesta_correcta_es_array(correctas);
+
+    const arrayIncorrectas = [];
+
+    let rnd;
+
+    for (let i = 0; i < constantes.NUMERO_OPCIONES_RESPUESTAS; i ++)
+    {
+        do {
+            rnd = Math.floor(Math.random() * arrayContinentes.length);
+        }
+        while (correcta.toLowerCase() === arrayContinentes[rnd].toLowerCase() || arrayIncorrectas.includes(arrayContinentes[rnd]));
+
+        arrayIncorrectas.push(arrayContinentes[rnd]);
+    }
+
     return arrayIncorrectas;
 }
 
