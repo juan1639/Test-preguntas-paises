@@ -43,7 +43,12 @@ export const click = document.addEventListener('click', (event) =>
         if (clickar === 'respuesta-9')
         {
             console.log("*** respuesta correcta ***");
-            siguiente_pregunta(true);
+            siguiente_pregunta(true, clickar);
+        }
+        else if (clickar.startsWith('respuesta-'))
+        {
+            console.log('*** respuesta erronea ***');
+            siguiente_pregunta(false, clickar);
         }
     }
 });
@@ -93,6 +98,11 @@ export const touchStart = document.addEventListener('touchstart', (event) =>
         {
             console.log("*** respuesta correcta! ***");
             siguiente_pregunta(true);
+        }
+        else if (touch.startsWith('respuesta-'))
+        {
+            console.log('*** respuesta erronea ***');
+            siguiente_pregunta(false);
         }
     }
 });

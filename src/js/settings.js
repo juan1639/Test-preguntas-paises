@@ -68,8 +68,8 @@ export class Settings
             gameover: new Audio('assets/audio/gameover.mp3'),
             boooh: new Audio('assets/audio/boooh.mp3'),
             winner: new Audio('assets/audio/aplausoseagle.mp3'),
-            correct: new Audio('assets/audio/p-ping.mp3'),
-            wrong: new Audio('assets/audio/umph.mp3'),
+            correct: new Audio('assets/audio/correct-choice.mp3'),
+            wrong: new Audio('assets/audio/wrong-answer.mp3'),
             musicafondo: new Audio('assets/audio/music-puzzle-game1.mp3')
         };
 

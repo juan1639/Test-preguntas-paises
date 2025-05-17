@@ -98,27 +98,34 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
     }
 }
 
-function siguiente_pregunta(acertadaBool)
+function siguiente_pregunta(acertadaBool, elegida)
 {
     const { resultado, doms, sonidos } = context.settings;
 
     if (acertadaBool)
     {
         resultado.acertadas ++;
+        document.querySelector('#respuesta-9').classList.add('respuesta-correcta');
         sonidos.correct.play();
     }
     else
     {
+        document.querySelector(`#${elegida}`).classList.add('respuesta-incorrecta');
+        document.querySelector('#respuesta-9').classList.add('respuesta-correcta');
         sonidos.wrong.play();
     }
 
-    console.log(`Acertadas: ${resultado.acertadas}/${resultado.totalPreguntas}`);
-    
-    resultado.contadorPreguntas ++;
-    doms.opciones.innerHTML = '';
+    setTimeout(() =>
+    {
+        console.log(`Acertadas: ${resultado.acertadas}/${resultado.totalPreguntas}`);
 
-    renderizar_info();
-    crear_pregunta();
+        resultado.contadorPreguntas ++;
+        doms.opciones.innerHTML = '';
+
+        renderizar_info();
+        crear_pregunta();
+
+    }, 3000);
 }
 
 function renderizar_info()

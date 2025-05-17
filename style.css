@@ -114,7 +114,7 @@ body {
     padding: 1rem 2.4rem;
     margin: 0 2rem 1.5rem 2rem;
     cursor: pointer;
-    animation: opacidadTransicion 7s ease-in;
+    animation: opacidadTransicion 4s ease-in;
 }
 
 .respuesta:hover {
@@ -141,6 +141,23 @@ body {
     color: cyan;
     text-shadow: 2px 2px 4px var(--blanco);
     font-weight: 400;
+}
+
+#rest-countries {
+    border-radius: 6px;
+    font-size: 24px;
+    color: var(--gradi-verde1);
+    text-shadow: 1px 1px 2px var(--blanco);
+    font-weight: 400;
+    background-color: #111111;
+    opacity: 0.8;
+    padding: 0.4rem 0.8rem;
+    margin: 1.5rem 0;
+    text-decoration: none;
+}
+
+#rest-countries:hover {
+    transform: scale(1.1);
 }
 
 .botones-inicio {
@@ -174,11 +191,11 @@ body {
     width: fit-content;
     height: fit-content;
     max-width: 280px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: var(--botonInicioBlancoNormal);
     background: var(--gradi-gris2);
-    padding: 0.8rem 2rem;
+    padding: 0.4rem 2rem;
     /* display: inline-block; */
     display: none;
     opacity: 0.8;
@@ -201,6 +218,14 @@ body {
 
 .no-oculto-flex {
     display: flex;
+}
+
+.respuesta-correcta {
+    background-color: var(--gradi-verde2);
+}
+
+.respuesta-incorrecta {
+    background-color: var(--gradi-rojo2);
 }
 
 @keyframes opacidadTransicion {
@@ -257,6 +282,6 @@ RESPONSIVE
     .botones-acciones {
         max-width: 220px;
         font-size: 18px;
-        padding: 0.6rem 1rem;
+        padding: 0.4rem 1rem;
     }
 }
