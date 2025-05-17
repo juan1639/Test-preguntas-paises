@@ -31,7 +31,11 @@ export const loadData = async () =>
     }
     catch (err)
     {
-        const resBackup = await fetch('../../json/paises_backup.json');
+        const BASE_PATH = window.location.pathname.split('/')[1]; // obtener el path-base en produccion
+        
+        const resBackup = await fetch(`/${BASE_PATH}/json/paises_backup.json`);
+        //const resBackup = await fetch('../../json/paises_backup.json'); // path-base local
+
         todosLosPaises = await resBackup.json();
 
         console.log(todosLosPaises);
