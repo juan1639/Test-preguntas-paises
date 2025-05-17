@@ -19,7 +19,7 @@ window.onload = () =>
 
         context.settings.estado.preFetch = false;
         context.settings.estado.preJuego = true;
-
+        
         // Podés continuar usando `todosLosPaises` aquí
     });
 }

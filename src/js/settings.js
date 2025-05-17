@@ -103,7 +103,8 @@ export class Settings
             respuestaContainer: document.getElementById('respuesta-container'),
             opciones: document.getElementById('opciones'),
             info: document.getElementById('info'),
-            botonesInicio: document.getElementsByClassName('botones-inicio')
+            botonesInicio: document.getElementsByClassName('botones-inicio'),
+            botonMusic: document.getElementById('boton-toggle-music')
         };
     }
 }

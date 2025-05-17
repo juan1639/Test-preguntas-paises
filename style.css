@@ -12,6 +12,7 @@
     --gradi-rojo2: rgb(255, 23, 5);
     --gradi-verde1: rgb(25, 240, 9);
     --gradi-verde2: rgb(25, 180, 9);
+    --amarillo: rgb(255, 252, 99);
 }
 
 * {
@@ -60,6 +61,14 @@ body {
     margin: 0 2rem 1rem 2rem;
 }
 
+.header-botones {
+    width: 100%;
+    height: fit-content;
+    max-width: 800px;
+    display: flex;
+    justify-content: end;
+}
+
 .pregunta {
     width: 100vw;
     height: fit-content;
@@ -74,7 +83,7 @@ body {
     display: none;
     justify-content: left;
     padding: 1.2rem 2.4rem;
-    margin: 1.5rem 2rem 2.5rem 2rem;
+    margin: 0.5rem 2rem 2.5rem 2rem;
 }
 
 .respuesta-container {
@@ -128,7 +137,7 @@ body {
     max-width: 300px;
     font-size: 32px;
     font-weight: bold;
-    color: var(--gradi-gris1);
+    color: var(--botonInicioBlancoNormal);
     background: var(--gradi-rojo1);
     padding: 2rem 4rem;
     display: inline-block;
@@ -141,8 +150,31 @@ body {
 }
 
 .botones-inicio:hover {
-    color: var(--botonInicioBlancoIntenso);
+    color: var(--amarillo);
     background-color: var(--gradi-rojo2);
+}
+
+.botones-acciones {
+    border: none;
+    border-radius: 6px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 280px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--botonInicioBlancoNormal);
+    background: var(--gradi-gris2);
+    padding: 0.8rem 2rem;
+    /* display: inline-block; */
+    display: none;
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.botones-acciones:hover {
+    color: var(--amarillo);
+    background-color: var(--gradi-gris1);
 }
 
 .oculto {
@@ -169,23 +201,21 @@ body {
 RESPONSIVE
 ---------------------------------------------------- */
 @media (max-width: 768px) {
-    .botones-inicio {
-        max-width: 250px;
-        font-size: 24px;
-        padding: 1rem 2rem;
-    }
-
     .header {
         font-size: 32px;
         padding: 0.4rem 1rem;
         margin: 0 1rem 0.8rem 1rem;
     }
 
+    .header-botones {
+        width: 98%;
+    }
+
     .pregunta {
         width: 98vw;
         font-size: 24px;
         padding: 1.2rem 2.4rem;
-        margin: 1rem 0.4 rem 1.5rem 0.4rem;
+        margin: 0.2rem 0.4 rem 1.5rem 0.4rem;
     }
 
     .respuesta {
@@ -198,5 +228,17 @@ RESPONSIVE
         font-size: 14px;
         padding: 0.4rem 1rem;
         margin: 0.4rem 2rem;
+    }
+
+    .botones-inicio {
+        max-width: 250px;
+        font-size: 24px;
+        padding: 1rem 2rem;
+    }
+
+    .botones-acciones {
+        max-width: 220px;
+        font-size: 18px;
+        padding: 0.6rem 1rem;
     }
 }

@@ -10,9 +10,12 @@ function comenzar_partida()
     estado.enJuego = true;
 
     doms.botonesInicio[0].style.display = "none";
+    doms.botonMusic.style.display = "inline-block";
+    
     resultado.acertadas = 0;
 
     sonidos.musicafondo.play();
+
     crear_pregunta();
 }
 
