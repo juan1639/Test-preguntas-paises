@@ -10,13 +10,14 @@ function comenzar_partida()
 {
     console.log("*** comienza test ***");
 
-    const { estado, resultado, doms, sonidos} = context.settings;
+    const { estado, resultado, doms, clickRespuesta, sonidos} = context.settings;
 
     estado.preJuego = false;
     estado.enJuego = true;
 
     resultado.acertadas = 0;
     resultado.contadorPreguntas ++;
+    clickRespuesta.bandera = false;
 
     doms.botonesInicio[0].classList.remove("no-oculto");
     doms.botonesInicio[0].classList.add("oculto");
@@ -27,8 +28,8 @@ function comenzar_partida()
     doms.botonMusic.classList.remove('oculto');
     doms.botonMusic.classList.add("no-oculto");
 
-    doms.infoContainer.classList.remove("oculto");
-    doms.infoContainer.classList.add("no-oculto-flex");
+    doms.restCountriesLink[0].classList.remove('no-oculto');
+    doms.restCountriesLink[0].classList.add('oculto');
 
     renderizar_info();
 
@@ -39,7 +40,9 @@ function comenzar_partida()
 
 function crear_pregunta()
 {
-    const { tipoPregunta, doms, todosLosPaises } = context.settings;
+    const { constantes, tipoPregunta, doms, todosLosPaises, clickRespuesta } = context.settings;
+
+    clickRespuesta.bandera = false;
 
     // Hacemos visible el elemento-DOM contenedor de la 'pregunta':
     doms.pregunta.classList.add('no-oculto-flex');
@@ -77,19 +80,22 @@ function crear_pregunta()
     // Generamos las respuestas incorrectas:
     const arrayIncorrectas = generar_opciones_incorrectas(respuestaCorrectaKey, paisRnd);
 
-    // Creamos las opciones-respuestas:
-    crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas);
+    // Creamos las opciones-respuestas (delay):
+    setTimeout(() => crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas), constantes.DELAY_APARECEN_RESPUESTAS);
 }
 
 function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 {
     const { constantes, doms } = context.settings;
 
+    doms.infoContainer[0].classList.remove("oculto");
+    doms.infoContainer[0].classList.add("no-oculto-flex");
+
     const NUMERO_OPCIONES = constantes.NUMERO_OPCIONES_RESPUESTAS;
     const ubicarCorrectaRnd = Math.floor(Math.random() * NUMERO_OPCIONES);
 
     let respuestaCorrectaChecked = check_respuesta_correcta_es_array(respuestaCorrecta);
-    console.log(respuestaCorrectaChecked);
+    // console.log(respuestaCorrectaChecked);
 
     for (let i = 0; i < NUMERO_OPCIONES; i ++)
     {
@@ -98,14 +104,18 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 
         if (ubicarCorrectaRnd === i)
         {
-            nuevaOpcionRespuesta.setAttribute('id', 'respuesta-9');
+            const generarId = 'respuesta-9';
+            nuevaOpcionRespuesta.setAttribute('id', generarId);
             nuevaOpcionRespuesta.textContent = respuestaCorrectaChecked;
+            nuevaOpcionRespuesta.addEventListener('click', () => siguiente_pregunta(true, generarId));
         }
         else
         {
-            nuevaOpcionRespuesta.setAttribute('id', `respuesta-${i}`);
+            const generarId = `respuesta-${i}`;
+            nuevaOpcionRespuesta.setAttribute('id', generarId);
             let respuestaIncorrectaChecked = check_respuesta_correcta_es_array(arrayIncorrectas[i]);
             nuevaOpcionRespuesta.textContent = respuestaIncorrectaChecked;
+            nuevaOpcionRespuesta.addEventListener('click', () => siguiente_pregunta(false, generarId));
         }
 
         doms.opciones.appendChild(nuevaOpcionRespuesta);
@@ -114,7 +124,14 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 
 function siguiente_pregunta(acertadaBool, elegida)
 {
-    const { constantes, estado, resultado, doms, sonidos } = context.settings;
+    const { constantes, estado, resultado, doms, clickRespuesta, sonidos } = context.settings;
+
+    if (clickRespuesta.bandera)
+    {
+        return;
+    }
+
+    clickRespuesta.bandera = true;
 
     if (acertadaBool)
     {
@@ -141,8 +158,8 @@ function siguiente_pregunta(acertadaBool, elegida)
             estado.enJuego = false;
             estado.gameOver = true;
 
-            doms.infoContainer.classList.remove("no-oculto-flex");
-            doms.infoContainer.classList.add("oculto");
+            doms.infoContainer[0].classList.remove("no-oculto-flex");
+            doms.infoContainer[0].classList.add("oculto");
 
             modal_fin_test();
         }
@@ -150,6 +167,9 @@ function siguiente_pregunta(acertadaBool, elegida)
         {
             resultado.contadorPreguntas ++;
             doms.opciones.innerHTML = '';
+
+            doms.infoContainer[0].classList.remove("no-oculto-flex");
+            doms.infoContainer[0].classList.add("oculto");
 
             renderizar_info();
             crear_pregunta();

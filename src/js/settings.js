@@ -11,6 +11,7 @@ export class Settings
             VP_WIDTH: window.innerWidth,
             VP_HEIGHT: window.innerHeight,
             DELAY_ENTRE_PREGUNTAS: 3000,
+            DELAY_APARECEN_RESPUESTAS: 1200,
             CADENCIA_CLICK_ENTRE_RESPUESTAS: 4500,
             FPS: 50
         };
@@ -38,6 +39,11 @@ export class Settings
         };
 
         this.todosLosPaises = [];
+
+        this.clickRespuesta =
+        {
+            bandera: false
+        };
 
         this.estado =
         {
@@ -102,11 +108,16 @@ export class Settings
         this.doms =
         {
             main: document.getElementById('main'),
+
             pregunta: document.getElementById('pregunta'),
             respuestaContainer: document.getElementById('respuesta-container'),
             opciones: document.getElementById('opciones'),
-            infoContainer: document.getElementById('info-container'),
+
+            infoContainer: document.getElementsByClassName('info-container'),
             info: document.getElementsByClassName('info'),
+
+            restCountriesLink: document.getElementsByClassName('rest-countries-link'),
+            
             botonesInicio: document.getElementsByClassName('botones-inicio'),
             botonMusic: document.getElementById('boton-toggle-music'),
             selectPreguntas: document.getElementsByClassName('selector-numero-preguntas')

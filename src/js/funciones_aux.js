@@ -69,7 +69,7 @@ function generar_opciones_continentes(paisRnd)
     return arrayIncorrectas;
 }
 
-export function volver_menu_principal()
+export function volver_menu_principal(modal)
 {
     const { estado, resultado, doms } = context.settings;
 
@@ -81,7 +81,6 @@ export function volver_menu_principal()
     doms.opciones.innerHTML = '';
     doms.pregunta.innerHTML = '';
 
-    const modal = document.querySelector('#modal-fin-test');
     modal.remove();
 
     doms.botonesInicio[0].classList.remove("oculto");
@@ -96,8 +95,11 @@ export function volver_menu_principal()
     doms.pregunta.classList.remove('no-oculto-flex');
     doms.pregunta.classList.add('oculto');
 
-    doms.infoContainer.classList.remove("no-oculto-flex");
-    doms.infoContainer.classList.add("oculto");
+    doms.restCountriesLink[0].classList.remove('oculto');
+    doms.restCountriesLink[0].classList.add('no-oculto');
+
+    doms.infoContainer[0].classList.remove("no-oculto-flex");
+    doms.infoContainer[0].classList.add("oculto");
 }
 
 export function modal_fin_test()
@@ -132,5 +134,41 @@ export function modal_fin_test()
     boton.setAttribute('id', 'boton-continuar');
     boton.classList.add('margen-top');
     boton.textContent = 'Continuar';
+    boton.addEventListener('click', () => volver_menu_principal(modal));
     modal.appendChild(boton);
+}
+
+export function change_numero_preguntas(ev)
+{
+    console.log(ev.target.value);
+    //console.log(ev);
+    //console.log(typeof ev.target.value);
+
+    // Si los settings todavia son null... return
+    if (typeof context.settings === 'undefined') return;
+
+    // -------------------- Opciones change ------------------------
+    /* if (ev.target.classList.contains('selector-numero-preguntas'))
+    {
+        // Asignamos el numero de preguntas a la variable 'totalPreguntas':
+        context.settings.resultado.totalPreguntas = Number.parseInt(ev.target.value);
+        console.log("Numero preguntas: ", Number.parseInt(ev.target.value));
+    } */
+    
+    context.settings.resultado.totalPreguntas = Number.parseInt(ev.target.value);
+    console.log("Numero preguntas: ", Number.parseInt(ev.target.value));
+}
+
+export function toggle_music()
+{
+    const { sonidos } = context.settings;
+
+    if (sonidos.musicafondo.paused)
+    {
+        sonidos.musicafondo.play();
+    }
+    else
+    {
+        sonidos.musicafondo.pause();
+    }
 }

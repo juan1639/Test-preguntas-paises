@@ -115,7 +115,7 @@ body {
     padding: 1rem 2.4rem;
     margin: 0 2rem 1.5rem 2rem;
     cursor: pointer;
-    animation: opacidadTransicion 4s ease-in;
+    animation: opacidadTransicion 3s ease-in;
 }
 
 .respuesta:hover {
@@ -123,7 +123,7 @@ body {
     color: var(--amarillo);
 }
 
-#info-container {
+.info-container {
     width: 100vw;
     height: fit-content;
     max-width: 800px;
@@ -131,7 +131,7 @@ body {
     color: cyan;
     text-shadow: 2px 2px 4px var(--blanco);
     font-weight: 400;
-    /* display: flex; */
+    display: none;
     justify-content: space-between;
     padding: 0.4rem 2rem;
     margin: 0.4rem 4rem;
@@ -144,7 +144,7 @@ body {
     font-weight: 400;
 }
 
-#rest-countries {
+.rest-countries-link {
     border-radius: 6px;
     font-size: 24px;
     color: var(--gradi-verde1);
@@ -155,9 +155,10 @@ body {
     padding: 0.4rem 0.8rem;
     margin: 1.5rem 0;
     text-decoration: none;
+    display: inline-block;
 }
 
-#rest-countries:hover {
+.rest-countries-link:hover {
     transform: scale(1.1);
 }
 
@@ -363,7 +364,7 @@ RESPONSIVE
         padding: 0.4rem 2rem;
     }
 
-    #rest-countries {
+    .rest-countries {
         font-size: 14px;
         padding: 0.4rem 0.8rem;
         margin: 1.5rem 0;
