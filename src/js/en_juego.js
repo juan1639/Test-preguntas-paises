@@ -13,6 +13,7 @@ function comenzar_partida()
     resultado.contadorPreguntas ++;
 
     doms.botonesInicio[0].classList.add("oculto");
+    doms.selectPreguntas[0].classList.add("oculto");
     doms.botonMusic.classList.add("no-oculto");
     doms.infoContainer.classList.add("no-oculto-flex");
 
@@ -100,7 +101,7 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 
 function siguiente_pregunta(acertadaBool, elegida)
 {
-    const { resultado, doms, sonidos } = context.settings;
+    const { estado, resultado, doms, sonidos } = context.settings;
 
     if (acertadaBool)
     {
@@ -119,11 +120,24 @@ function siguiente_pregunta(acertadaBool, elegida)
     {
         console.log(`Acertadas: ${resultado.acertadas}/${resultado.totalPreguntas}`);
 
-        resultado.contadorPreguntas ++;
-        doms.opciones.innerHTML = '';
+        if (resultado.contadorPreguntas >= resultado.totalPreguntas)
+        {
+            console.log("*** Fin del test ***");
+            renderizar_info();
 
-        renderizar_info();
-        crear_pregunta();
+            estado.enJuego = false;
+            estado.gameOver = true;
+
+            modal_fin_test();
+        }
+        else
+        {
+            resultado.contadorPreguntas ++;
+            doms.opciones.innerHTML = '';
+
+            renderizar_info();
+            crear_pregunta();
+        }
     }, 3000);
 }
 
@@ -203,6 +217,31 @@ function generar_opciones_continentes(paisRnd)
     }
 
     return arrayIncorrectas;
+}
+
+function modal_fin_test()
+{
+    const { resultado, doms } = context.settings;
+
+    resultado.porcentaje = (resultado.acertadas * 10) / resultado.totalPreguntas;
+
+    const modal = document.createElement('div');
+    modal.setAttribute('class', 'modal');
+    modal.setAttribute('id', 'modal-fin-test');
+    modal.textContent = "Resultado del Test";
+    doms.main.appendChild(modal);
+    
+    const acertadas = document.createElement('p');
+    acertadas.setAttribute('class', 'info');
+    acertadas.classList.add('margen-top');
+    acertadas.textContent = `Acertadas: ${resultado.acertadas} / ${resultado.totalPreguntas}`;
+    modal.appendChild(acertadas);
+    
+    const nota = document.createElement('p');
+    nota.setAttribute('class', 'info');
+    nota.textContent = `Nota: ${resultado.porcentaje}`;
+    modal.appendChild(nota);
+
 }
 
 export { comenzar_partida, siguiente_pregunta };

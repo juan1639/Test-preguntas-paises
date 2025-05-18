@@ -150,7 +150,7 @@ body {
     text-shadow: 1px 1px 2px var(--blanco);
     font-weight: 400;
     background-color: #111111;
-    opacity: 0.9;
+    opacity: 0.8;
     padding: 0.4rem 0.8rem;
     margin: 1.5rem 0;
     text-decoration: none;
@@ -208,6 +208,52 @@ body {
     background-color: var(--gradi-gris1);
 }
 
+.selector-numero-preguntas {
+    border: none;
+    border-radius: 6px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 320px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #393937;
+    background: lightseagreen;
+    padding: 0.4rem 2rem;
+    display: inline-block;
+    margin-top: 400px;
+    margin-left: auto;
+    position: absolute;
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 15;
+}
+
+.modal {
+    width: 100vw;
+    height: fit-content;
+    max-width: 480px;
+    min-height: 320px;
+    border-radius: 6px;
+    /* border: 1px solid pink; */
+    font-size: 32px;
+    font-weight: bold;
+    justify-content: center;
+    color: var(--blanco-azulado);
+    background-color: #141414;
+    box-shadow: 4px 4px 8px #eee;
+    padding: 1.8rem 2.4rem 1rem 2.4rem;
+    position: absolute;
+    margin-top: 200px;
+    margin-left: auto;
+    opacity: 1;
+    /* display: block; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+}
+
 .oculto {
     display: none;
 }
@@ -226,6 +272,10 @@ body {
 
 .respuesta-incorrecta {
     background-color: var(--gradi-rojo2);
+}
+
+.margen-top {
+    margin-top: 3.2rem;
 }
 
 @keyframes opacidadTransicion {
@@ -273,6 +323,20 @@ RESPONSIVE
         margin: 0.2rem 0.8rem;
     }
 
+    .modal {
+        width: 98vw;
+        height: fit-content;
+        max-width: 400px;
+        min-height: 300px;
+        font-size: 24px;
+        padding: 1.4rem 1.8rem 0.8rem 1.8rem;
+        gap: 1rem;
+    }
+
+    .margen-top {
+        margin-top: 2.6rem;
+    }
+
     .botones-inicio {
         max-width: 250px;
         font-size: 24px;
@@ -283,6 +347,11 @@ RESPONSIVE
         max-width: 220px;
         font-size: 18px;
         padding: 0.4rem 1rem;
+    }
+
+    .selector-numero-preguntas {
+        font-size: 18px;
+        padding: 0.4rem 2rem;
     }
 
     #rest-countries {

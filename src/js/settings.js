@@ -108,7 +108,8 @@ export class Settings
             infoContainer: document.getElementById('info-container'),
             info: document.getElementsByClassName('info'),
             botonesInicio: document.getElementsByClassName('botones-inicio'),
-            botonMusic: document.getElementById('boton-toggle-music')
+            botonMusic: document.getElementById('boton-toggle-music'),
+            selectPreguntas: document.getElementsByClassName('selector-numero-preguntas')
         };
     }
 }

@@ -53,6 +53,24 @@ export const click = document.addEventListener('click', (event) =>
     }
 });
 
+export const changeHowManyQuestions = document.addEventListener('change', (ev) =>
+{
+    console.log(ev.target.value);
+    //console.log(ev);
+    //console.log(typeof ev.target.value);
+
+    // Si los settings todavia son null... return
+    if (typeof context.settings === 'undefined') return;
+
+    // -------------------- Opciones change ------------------------
+    if (context.settings.estado.preJuego && ev.target.className === 'selector-numero-preguntas')
+    {
+        // Asignamos el numero de preguntas a la variable 'totalPreguntas':
+        context.settings.resultado.totalPreguntas = Number.parseInt(ev.target.value);
+        console.log("Numero preguntas: ", Number.parseInt(ev.target.value));
+    }
+});
+
 // ======================================================================
 //  EVENTOS touchstart
 // 
