@@ -1,5 +1,5 @@
 import { context } from "./main.js";
-import { comenzar_partida, siguiente_pregunta } from "./en_juego.js";
+import { comenzar_partida, siguiente_pregunta, volver_menu_principal } from "./en_juego.js";
 
 // ======================================================================
 //  EVENTOS Click
@@ -49,6 +49,13 @@ export const click = document.addEventListener('click', (event) =>
         {
             console.log('*** respuesta erronea ***');
             siguiente_pregunta(false, clickar);
+        }
+    }
+    else if (settings.estado.gameOver)
+    {
+        if (clickar === 'boton-continuar')
+        {
+            volver_menu_principal();
         }
     }
 });

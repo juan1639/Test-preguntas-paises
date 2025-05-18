@@ -12,9 +12,16 @@ function comenzar_partida()
     resultado.acertadas = 0;
     resultado.contadorPreguntas ++;
 
+    doms.botonesInicio[0].classList.remove("no-oculto");
     doms.botonesInicio[0].classList.add("oculto");
+
+    doms.selectPreguntas[0].classList.remove("no-oculto");
     doms.selectPreguntas[0].classList.add("oculto");
+
+    doms.botonMusic.classList.remove('oculto');
     doms.botonMusic.classList.add("no-oculto");
+
+    doms.infoContainer.classList.remove("oculto");
     doms.infoContainer.classList.add("no-oculto-flex");
 
     renderizar_info();
@@ -29,7 +36,7 @@ function crear_pregunta()
     const { todosLosPaises, doms, tipoPregunta } = context.settings;
 
     // Hacemos visible el elemento-DOM contenedor de la 'pregunta':
-    doms.pregunta.style.display = 'flex';
+    doms.pregunta.classList.add('no-oculto-flex');
     doms.pregunta.innerHTML = '';
 
     // Hacemos un Object_keys de los tipos de pregunta posibles:
@@ -127,6 +134,9 @@ function siguiente_pregunta(acertadaBool, elegida)
 
             estado.enJuego = false;
             estado.gameOver = true;
+
+            doms.infoContainer.classList.remove("no-oculto-flex");
+            doms.infoContainer.classList.add("oculto");
 
             modal_fin_test();
         }
@@ -244,6 +254,45 @@ function modal_fin_test()
     nota.setAttribute('class', 'info');
     nota.textContent = `Nota: ${resultado.porcentaje}`;
     modal.appendChild(nota);
+
+    const boton = document.createElement('button');
+    boton.setAttribute('class', 'botones-acciones');
+    boton.classList.add('no-oculto');
+    boton.setAttribute('id', 'boton-continuar');
+    boton.classList.add('margen-top');
+    boton.textContent = 'Continuar';
+    modal.appendChild(boton);
 }
 
-export { comenzar_partida, siguiente_pregunta };
+function volver_menu_principal()
+{
+    const { estado, resultado, doms } = context.settings;
+
+    estado.gameOver = false;
+    estado.preJuego = true;
+
+    resultado.contadorPreguntas = 0;
+
+    doms.opciones.innerHTML = '';
+    doms.pregunta.innerHTML = '';
+
+    const modal = document.querySelector('#modal-fin-test');
+    modal.remove();
+
+    doms.botonesInicio[0].classList.remove("oculto");
+    doms.botonesInicio[0].classList.add("no-oculto");
+
+    doms.selectPreguntas[0].classList.remove("oculto");
+    doms.selectPreguntas[0].classList.add("no-oculto");
+
+    doms.botonMusic.classList.remove('no-oculto');
+    doms.botonMusic.classList.add('oculto');
+
+    doms.pregunta.classList.remove('no-oculto-flex');
+    doms.pregunta.classList.add('oculto');
+
+    doms.infoContainer.classList.remove("no-oculto-flex");
+    doms.infoContainer.classList.add("oculto");
+}
+
+export { comenzar_partida, siguiente_pregunta, volver_menu_principal };
