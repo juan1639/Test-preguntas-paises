@@ -13,6 +13,7 @@
     --gradi-verde1: rgb(25, 240, 9);
     --gradi-verde2: rgb(25, 180, 9);
     --amarillo: rgb(255, 252, 99);
+    --azulOscuro: #137;
 }
 
 * {
@@ -193,8 +194,8 @@ body {
     max-width: 280px;
     font-size: 20px;
     font-weight: bold;
-    color: var(--botonInicioBlancoNormal);
-    background: var(--gradi-gris2);
+    color: var(--botonInicioBlancoIntenso);
+    background: var(--azulOscuro);
     padding: 0.4rem 2rem;
     /* display: inline-block; */
     display: none;
@@ -205,7 +206,8 @@ body {
 
 .botones-acciones:hover {
     color: var(--amarillo);
-    background-color: var(--gradi-gris1);
+    background-color: cyan;
+    opacity: 1;
 }
 
 .selector-numero-preguntas {
@@ -229,19 +231,19 @@ body {
 }
 
 .modal {
-    width: 100vw;
+    width: fit-content;
     height: fit-content;
     max-width: 480px;
-    min-height: 320px;
+    /* min-height: 320px; */
     border-radius: 6px;
     /* border: 1px solid pink; */
     font-size: 32px;
     font-weight: bold;
     justify-content: center;
     color: var(--blanco-azulado);
-    background-color: #141414;
+    background-color: var(--azulOscuro);
     box-shadow: 4px 4px 8px #eee;
-    padding: 1.8rem 2.4rem 1rem 2.4rem;
+    padding: 2rem 5rem;
     position: absolute;
     margin-top: 200px;
     margin-left: auto;
@@ -252,6 +254,14 @@ body {
     justify-content: start;
     align-items: center;
     gap: 2rem;
+}
+
+hr {
+    width: 100%;
+    height: 2px;
+    background-color: #031585;
+    padding: 0;
+    margin: 0;
 }
 
 .oculto {
@@ -275,7 +285,7 @@ body {
 }
 
 .margen-top {
-    margin-top: 3.2rem;
+    margin-top: 2rem;
 }
 
 @keyframes opacidadTransicion {
@@ -324,17 +334,16 @@ RESPONSIVE
     }
 
     .modal {
-        width: 98vw;
+        width: fit-content;
         height: fit-content;
-        max-width: 400px;
-        min-height: 300px;
+        max-width: 98vw;
         font-size: 24px;
-        padding: 1.4rem 1.8rem 0.8rem 1.8rem;
+        padding: 1.4rem 2rem 1rem 2rem;
         gap: 1rem;
     }
 
     .margen-top {
-        margin-top: 2.6rem;
+        margin-top: 1.5rem;
     }
 
     .botones-inicio {

@@ -230,6 +230,9 @@ function modal_fin_test()
     modal.setAttribute('id', 'modal-fin-test');
     modal.textContent = "Resultado del Test";
     doms.main.appendChild(modal);
+
+    const separador = document.createElement('hr');
+    modal.appendChild(separador);
     
     const acertadas = document.createElement('p');
     acertadas.setAttribute('class', 'info');
@@ -241,7 +244,6 @@ function modal_fin_test()
     nota.setAttribute('class', 'info');
     nota.textContent = `Nota: ${resultado.porcentaje}`;
     modal.appendChild(nota);
-
 }
 
 export { comenzar_partida, siguiente_pregunta };
