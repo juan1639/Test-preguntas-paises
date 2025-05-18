@@ -1,5 +1,6 @@
 import { context } from "./main.js";
-import { comenzar_partida, siguiente_pregunta, volver_menu_principal } from "./en_juego.js";
+import { comenzar_partida, siguiente_pregunta } from "./en_juego.js";
+import { volver_menu_principal } from "./funciones_aux.js";
 
 // ======================================================================
 //  EVENTOS Click
@@ -70,7 +71,7 @@ export const changeHowManyQuestions = document.addEventListener('change', (ev) =
     if (typeof context.settings === 'undefined') return;
 
     // -------------------- Opciones change ------------------------
-    if (context.settings.estado.preJuego && ev.target.className === 'selector-numero-preguntas')
+    if (ev.target.classList.contains('selector-numero-preguntas'))
     {
         // Asignamos el numero de preguntas a la variable 'totalPreguntas':
         context.settings.resultado.totalPreguntas = Number.parseInt(ev.target.value);
