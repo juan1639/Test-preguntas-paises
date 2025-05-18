@@ -114,7 +114,7 @@ function crear_opciones_respuestas(respuestaCorrecta, arrayIncorrectas)
 
 function siguiente_pregunta(acertadaBool, elegida)
 {
-    const { estado, resultado, doms, sonidos } = context.settings;
+    const { constantes, estado, resultado, doms, sonidos } = context.settings;
 
     if (acertadaBool)
     {
@@ -154,7 +154,7 @@ function siguiente_pregunta(acertadaBool, elegida)
             renderizar_info();
             crear_pregunta();
         }
-    }, 3000);
+    }, constantes.DELAY_ENTRE_PREGUNTAS);
 }
 
 function renderizar_info()

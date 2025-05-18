@@ -10,8 +10,8 @@ export class Settings
             ESCALAR_PARTICULAS: 1,
             VP_WIDTH: window.innerWidth,
             VP_HEIGHT: window.innerHeight,
-            DELAY_WINNER_MODAL: 500,
-            DELAY_GAMEOVER: 3900,
+            DELAY_ENTRE_PREGUNTAS: 3000,
+            CADENCIA_CLICK_ENTRE_RESPUESTAS: 4500,
             FPS: 50
         };
 

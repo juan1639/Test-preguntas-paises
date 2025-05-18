@@ -2,6 +2,10 @@ import { context } from "./main.js";
 import { comenzar_partida, siguiente_pregunta } from "./en_juego.js";
 import { volver_menu_principal } from "./funciones_aux.js";
 
+const CADENCIA_CLICK = 500;// 500ms
+let allowClickPreguntas = true;
+let allowClickGeneral = true;
+
 // ======================================================================
 //  EVENTOS Click
 // 
@@ -19,7 +23,7 @@ export const click = document.addEventListener('click', (event) =>
     // ---------- Opciones click ------------
     const settings = context.settings;
 
-    if (clickar === 'boton-toggle-music')
+    if (clickar === 'boton-toggle-music' && allowClickGeneral)
     {
         if (settings.sonidos.musicafondo.paused)
         {
@@ -29,33 +33,48 @@ export const click = document.addEventListener('click', (event) =>
         {
             settings.sonidos.musicafondo.pause();
         }
+
+        allowClickGeneral = false;
+        setTimeout(() => allowClickGeneral = true, CADENCIA_CLICK);
     }
     
-    if (settings.estado.preJuego)
+    if (settings.estado.preJuego && allowClickPreguntas)
     {
         if (clickar === 'boton-comenzar')
         {
+            allowClickPreguntas = false;
+            setTimeout(() => allowClickPreguntas = true, settings.constantes.DELAY_ENTRE_PREGUNTAS);
+
             console.log('comenzar partida!');
             comenzar_partida();
         }
     }
-    else if (settings.estado.enJuego)
+    else if (settings.estado.enJuego && allowClickPreguntas)
     {
         if (clickar === 'respuesta-9')
         {
+            allowClickPreguntas = false;
+            setTimeout(() => allowClickPreguntas = true, settings.constantes.CADENCIA_CLICK_ENTRE_RESPUESTAS);
+
             console.log("*** respuesta correcta ***");
             siguiente_pregunta(true, clickar);
         }
         else if (clickar.startsWith('respuesta-'))
         {
+            allowClickPreguntas = false;
+            setTimeout(() => allowClickPreguntas = true, settings.constantes.CADENCIA_CLICK_ENTRE_RESPUESTAS);
+
             console.log('*** respuesta erronea ***');
             siguiente_pregunta(false, clickar);
         }
     }
-    else if (settings.estado.gameOver)
+    else if (settings.estado.gameOver && allowClickGeneral)
     {
         if (clickar === 'boton-continuar')
         {
+            allowClickGeneral = false;
+            setTimeout(() => allowClickGeneral = true, CADENCIA_CLICK);
+
             volver_menu_principal();
         }
     }
